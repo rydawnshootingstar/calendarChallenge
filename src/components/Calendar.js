@@ -55,7 +55,7 @@ class Calendar extends React.Component{
         this.setState({modal:false})
     }
 
-    //modal Input names and values
+    //modalName and modalValue come from the modal's inputs
     handleChange=(e)=> {
         this.setState({
             [e.target.name]: e.target.value
@@ -68,7 +68,6 @@ class Calendar extends React.Component{
 
             <Modal
             open={this.state.modal}
-            dimmer={this.state.dimmer}
             closeOnDimmerClick
             closeOnEscape
             centered={false}
@@ -103,7 +102,6 @@ class Calendar extends React.Component{
 
             <Grid 
             columns='equal' 
-            
             style={{textAlign: 'center'}}
             >
                 <Grid.Row>
@@ -115,31 +113,32 @@ class Calendar extends React.Component{
                     )
                 })}
                 </Grid.Row>
-                    {slots.map((slot)=> {
-                        return (
-                            <Grid.Row stretched> 
-                                {weekdays.map((day)=> {
-                                    return (
-                                        <Grid.Column 
-                                        onClick={()=>this.showModal({day, slot})}
-                                        >
-                                            <Slot 
-                                            hour={slot} 
-                                            name={this.props[day][slot].name} 
-                                            phone={this.props[day][slot].phone}
-                                            />
-                                        </Grid.Column>
-                                    )
-                                })}
-                            </Grid.Row>
-                        )
-                    })}
+
+                {slots.map((slot)=> {
+                    return (
+                        <Grid.Row stretched> 
+                            {weekdays.map((day)=> {
+                                return (
+                                    <Grid.Column 
+                                    onClick={()=>this.showModal({day, slot})}
+                                    >
+                                        <Slot 
+                                        hour={slot} 
+                                        name={this.props[day][slot].name} 
+                                        phone={this.props[day][slot].phone}
+                                        />
+                                    </Grid.Column>
+                                )
+                            })}
+                        </Grid.Row>
+                    )
+                })}
                 
             </Grid>
 
-             </div>
-        )
-    }
+            </div>
+        );
+    };
 
 }
 
@@ -147,7 +146,7 @@ const mapStateToProps = (state)=> {
     return {
        ...state.calendar
      };
-}
+};
 
 const componentConnector = connect(
     mapStateToProps,
@@ -157,16 +156,3 @@ const componentConnector = connect(
 export default componentConnector(Calendar);
 
 
-/*
-    Old way with local state
-
-        if(this.isFormValid){
-            this.setState(prevState=> ({
-                ...prevState,
-                [day]: {...prevState[day], [slot]: {
-                    ...prevState[slot], name, phone
-                }},
-               modal:false
-            }));
-        }
-*/
