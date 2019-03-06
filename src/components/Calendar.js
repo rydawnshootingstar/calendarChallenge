@@ -3,13 +3,8 @@ import {Grid, Button, Header, Modal, Input} from 'semantic-ui-react';
 import {connect} from 'react-redux';
 import Slot from './Slot';
 import { updateCalendar } from '../actions/calendar';
+import { weekdays, slots } from '../data/days_times';
 
-/*
-    -mapped out in render to create our calendar's "grid"
-    -these values correspond directly to redux state - if you change them here, change them there
-*/
-const weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-const slots = ['9-10 AM','10-11 AM','11 AM-12 PM','12-1 PM','1-2 PM','2-3 PM','3-4 PM','4-5 PM'];
 
 /*
     -This class will have state for its modal property 
