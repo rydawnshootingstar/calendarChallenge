@@ -1,0 +1,5 @@
+const CALENDAR = {
+    UPDATE: 'CALENDAR_UPDATE'
+};
+
+export {CALENDAR};
